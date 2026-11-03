@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+@theme {
+	--font-sans: "Nunito Sans", ui-sans-serif, system-ui, sans-serif;
+	--font-display: "Fraunces", Georgia, "Times New Roman", serif;
+
+	--color-cream: #fbf6ee;
+	--color-sand: #f2e5d4;
+	--color-ink: #302a23;
+	--color-ink-soft: #6b6156;
+	--color-clay: #b64c22;
+	--color-clay-dark: #9d421e;
+	--color-clay-soft: #f8ddd0;
+	--color-sage: #55705d;
+	--color-sage-soft: #e4ede5;
+	--color-honey: #e8b34d;
+	--color-line: #e7d8c6;
+}
+
+@layer base {
+	html {
+		scroll-behavior: smooth;
+	}
+
+	body {
+		@apply bg-cream font-sans text-ink antialiased;
+		overflow-x: hidden;
+	}
+
+	::selection {
+		@apply bg-clay text-white;
+	}
+
+	:focus-visible {
+		outline: 3px solid rgb(194 87 44 / 0.55);
+		outline-offset: 3px;
+	}
+
+	input[aria-invalid="true"],
+	select[aria-invalid="true"],
+	textarea[aria-invalid="true"] {
+		border-color: #dc2626;
+		background-color: #fff1f2;
+	}
+}
+
+@keyframes rise {
+	from {
+		opacity: 0;
+		transform: translateY(18px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.animate-rise {
+	animation: rise 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.skip-link {
+	position: fixed;
+	top: 1rem;
+	left: 1rem;
+	z-index: 100;
+	transform: translateY(-200%);
+	border-radius: 0.75rem;
+	background: #302a23;
+	padding: 0.75rem 1rem;
+	color: #fff;
+	font-size: 0.875rem;
+	font-weight: 800;
+	transition: transform 0.2s ease;
+}
+
+.skip-link:focus {
+	transform: translateY(0);
+}
+
+[hidden] {
+	display: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+	}
+}
